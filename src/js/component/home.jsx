@@ -1,24 +1,27 @@
 import React from "react";
-
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+import Digit from './Digit';
 
 //create your first component
 const Home = () => {
+	let [counter, setCounter] = React.useState(0)
+	React.useEffect(() => {
+		setInterval(() => {
+			setCounter(counter++)
+			// console.log(counter);
+		},1000);
+	},[])
+	
+
+
 	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div className="container d-flex">
+			<Digit orange = { Math.floor(counter / 100000) }/>
+			<Digit orange = { Math.floor(counter / 10000) }/>
+			<Digit orange = { Math.floor(counter / 1000) }/>
+			<Digit orange = { Math.floor(counter / 100)  }/>
+			<Digit orange = { Math.floor(counter / 10) }/>
+			<Digit orange = { Math.floor(counter / 1) }/>
+
 		</div>
 	);
 };
